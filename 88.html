@@ -1,0 +1,130 @@
+<html>
+<head>
+<title>
+Przykład ->pokaz formularza
+</title>
+<script language="JavaScript">
+ function setfocus()
+ {
+ document.jeden.txt1.focus(); return;
+ }
+ function test1(form)
+ {
+ if (form.txt1.value == "")
+ {
+ alert("Podaj ciąg znaków!")
+ }
+ else if (form.txt1.value.length < 4)
+ {
+ alert("Nazwisko musi mieć co najmniej 4 znaki!");
+ }
+ else
+ {
+ alert("Cześć "+form.txt1.value+" ! Informacja poprawna!");
+ }
+ }
+ function test2(form)
+ {
+ if (form.txt2.value == "" || form.txt2.value.indexOf('@', 0) == -1)
+ {
+ alert("Niepoprawny adres poczty elektronicznej!");
+ }
+ else
+ {
+ alert("OK!");
+ }
+ }
+ function test_pesel(form)
+ {
+ var pesel = form.pesel_kowalski.value;
+ if (pesel.length != 11)
+ {
+ alert("PESEL musi mieć 11 znaków!");
+ return;
+ }
+ var l1 = parseInt(pesel.substring(0, 1));
+ var l2 = parseInt(pesel.substring(1, 2));
+ var l3 = parseInt(pesel.substring(2, 3));
+ var l4 = parseInt(pesel.substring(3, 4));
+ var l5 = parseInt(pesel.substring(4, 5));
+ var l6 = parseInt(pesel.substring(5, 6));
+ var l7 = parseInt(pesel.substring(6, 7));
+ var l8 = parseInt(pesel.substring(7, 8));
+ var l9 = parseInt(pesel.substring(8, 9));
+ var l10 = parseInt(pesel.substring(9, 10));
+ var l11 = parseInt(pesel.substring(10, 11));
+ var lk = (l1 + 3 * l2 + 7 * l3 + 9 * l4 + l5 + 3 * l6 + 7 * l7 + 9 * l8 + l9 + 3 * l10) % 10;
+ var ck = (10 - lk) % 10;
+ if (ck !== l11)
+ {
+ alert("Niepoprawny numer PESEL!");
+ }
+ else if (ck === 0 && l11 !== 0)
+ {
+ alert("Niepoprawny numer PESEL!");
+ }
+ else
+ {
+ alert("Poprawny numer PESEL!");
+ }
+ }
+ function test_nip(form)
+ {
+ var nip = form.nip_kowalski.value;
+ if (nip.length != 10)
+ {
+ alert("NIP musi mieć 10 znaków!");
+ return;
+ }
+ var n1 = parseInt(nip.substring(0, 1));
+ var n2 = parseInt(nip.substring(1, 2));
+ var n3 = parseInt(nip.substring(2, 3));
+ var n4 = parseInt(nip.substring(3, 4));
+ var n5 = parseInt(nip.substring(4, 5));
+ var n6 = parseInt(nip.substring(5, 6));
+ var n7 = parseInt(nip.substring(6, 7));
+ var n8 = parseInt(nip.substring(7, 8));
+ var n9 = parseInt(nip.substring(8, 9));
+ var n10 = parseInt(nip.substring(9, 10));
+ var wk = (6 * n1 + 5 * n2 + 7 * n3 + 2 * n4 + 3 * n5 + 4 * n6 + 5 * n7 + 6 * n8 + 7 * n9) % 11;
+ if (wk !== n10)
+ {
+ alert("Niepoprawny numer NIP!");
+ }
+ else
+ {
+ alert("Poprawny numer NIP!");
+ }
+ }
+</script>
+</head>
+<body onLoad="setfocus()">
+<form name="jeden">
+ Wpisz swoje nazwisko:<br>
+ <input type="text" name="txt1" minlength="4">
+ <input type="button" name="button1" value="Test" onClick="test1(this.form)">
+</form>
+<form name="dwa">
+Wpisz adres swojej poczty elektronicznej:<br>
+<input type="text" name="txt2">
+<input type="button" name="button2" value="Test" onClick="test2(this.form)">
+</form>
+<form name="pesel">
+ Wpisz numer PESEL:<br>
+ <input type="text" name="pesel_kowalski">
+ <input type="button" name="button3" value="Test" onClick="test_pesel(this.form)">
+</form>
+<form name="nip">
+ Wpisz numer NIP:<br>
+ <input type="text" name="nip_kowalski">
+ <input type="button" name="button4" value="Test" onClick="test_nip(this.form)">
+</form>
+<form method=post action="mailto:dowolny@mail.pl">
+<h3>Czy podoba Ci się ta strona ?</h3>
+ <input name="choice" type="radio" value="1">Tak<BR>
+ <input name="choice" type="radio" value="2" checked>Może być<BR>
+ <input name="choice" type="radio" value="3">Badziewie!<BR>
+ <input name="submit" type="submit" value="Wyślij odpowiedź">
+</form>
+</body>
+</html>
